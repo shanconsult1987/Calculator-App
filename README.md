@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# Calculator App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive calculator application built with **React**, **TypeScript**, and **Vite**.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project provides a clean, fully-functional calculator with a dark card UI on a light background. It supports all standard arithmetic operations, formatted number display, input validation, and error handling.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **4×5 Button Grid** — full calculator layout with operations (+, −, ×, ÷), functions (AC, %, ±, ⌫), and decimal support
+- **Smart Display** — numbers formatted with space thousands separators (e.g., `1 234 567.89`)
+- **Input Validation** — maximum 10-digit limit with an auto-hiding hint message
+- **Error Handling** — detects and displays division-by-zero errors
+- **Modern Design** — circular buttons color-coded by type, soft shadows, smooth hover transitions
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Technology | Purpose |
+|---|---|
+| React 19 | UI component framework |
+| TypeScript | Type-safe JavaScript |
+| Vite 7 | Fast build tool and dev server |
+| CSS3 | Flexbox/grid layout and styling |
+| `Intl.NumberFormat` | Locale-aware number formatting (no external deps) |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# Install dependencies
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start development server (http://localhost:5173)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run tests
+npm test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/
+│   ├── Calculator.tsx   # Main container & state management
+│   ├── Display.tsx      # Number/hint display
+│   └── Button.tsx       # Reusable button component
+├── utils/
+│   ├── calculator.ts    # Core arithmetic logic
+│   ├── format.ts        # Number formatting utility
+│   └── types.ts         # TypeScript interfaces
+├── App.tsx              # Root component
+└── main.tsx             # Entry point
+```
+
+## Button Layout
+
+```
+AC   ⌫   %   ÷
+7    8   9   ×
+4    5   6   −
+1    2   3   +
+±    0   .   =
+```
+
+## Usage
+
+1. Click digit buttons (0–9) to enter numbers
+2. Click an operator (+, −, ×, ÷) to choose an operation
+3. Click `=` to compute the result
+4. Click `AC` to reset, `⌫` to delete the last digit, `%` for percentage, `±` to toggle sign
+
+See [DOCUMENTATION.md](./DOCUMENTATION.md) for full developer documentation.
+
+## License
+
+MIT
