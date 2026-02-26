@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# Calculator App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive calculator built with **React**, **TypeScript**, and **Vite**.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **4×5 button grid** — digits, operators (`+` `−` `×` `÷`), and functions (`AC`, `±`, `%`, `⌫`)
+- **Smart number formatting** — space thousands separators (e.g. `1 234 567.89`) via `Intl.NumberFormat`
+- **Input validation** — 10-digit limit with an auto-hiding hint message
+- **Error handling** — detects and displays division-by-zero errors
+- **Clean UI** — dark calculator card on a light page, circular buttons, smooth hover transitions
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Technology | Role |
+|---|---|
+| React 19 | UI component framework |
+| TypeScript | Type-safe JavaScript |
+| Vite | Dev server & production bundler |
+| CSS3 (Grid / Flexbox) | Layout and styling |
+| `Intl.NumberFormat` | Locale-aware number formatting (no external deps) |
 
-## Expanding the ESLint configuration
+## Quick Start
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Install dependencies
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Start development server (http://localhost:5173)
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Run tests
+npm test
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/
+│   ├── Calculator.tsx   # Main container & state management
+│   ├── Display.tsx      # Number / hint display
+│   └── Button.tsx       # Reusable button component
+├── utils/
+│   ├── calculator.ts    # Core arithmetic logic
+│   ├── format.ts        # Number formatting helper
+│   └── types.ts         # Shared TypeScript interfaces
+├── App.tsx              # Root component
+└── main.tsx             # Entry point
+```
+
+## Button Layout
+
+```
+AC   ⌫   %   ÷
+ 7   8   9   ×
+ 4   5   6   −
+ 1   2   3   +
+ ±   0   .   =
+```
+
+> Rows 2–5 are indented one space so the single-character digits line up visually with the two-character labels in row 1.
+
+## Documentation
+
+See [DOCUMENTATION.md](./DOCUMENTATION.md) for full developer documentation, including component breakdowns, utility API, styling guide, and troubleshooting tips.
+
+## License
+
+MIT
